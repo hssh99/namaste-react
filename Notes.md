@@ -23,3 +23,7 @@
 - HTTPs
 - Tree Shaking - remove unused code
 - Different dev and prod bundles
+
+## Episode - 03
+
+- npm run start -> shorhand: npm start (only works for start)
