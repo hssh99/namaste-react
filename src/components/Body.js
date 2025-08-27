@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { topRatedRestaurant } from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
@@ -8,6 +8,8 @@ const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
   const [searchText, setSearchText] = useState("");
+
+  const RestaurantCardTopRated = topRatedRestaurant(RestaurantCard);
 
   useEffect(() => {
     fetchData();
@@ -29,6 +31,8 @@ const Body = () => {
   };
 
   const onlineStatus = useOnlineStatus();
+
+  console.log("listOfRestaurants", listOfRestaurants);
 
   if (onlineStatus === false)
     return (
@@ -83,7 +87,14 @@ const Body = () => {
             key={restaurant.info.id}
             to={"/restaurants/" + restaurant.info.id}
           >
-            <RestaurantCard resData={restaurant} />
+            {
+              /** if the restaurant is pure veg then add a Veg label to it */
+              restaurant?.info?.avgRating > 4.2 ? (
+                <RestaurantCardTopRated resData={restaurant} />
+              ) : (
+                <RestaurantCard resData={restaurant} />
+              )
+            }
           </Link>
         ))}
       </div>
