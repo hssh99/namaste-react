@@ -5,7 +5,7 @@ import useRestaurantMenu from "../utils/useRestaurantMenu";
 import RestaurantCategory from "./RestaurantCategory";
 
 const RestaurantMenu = () => {
-  const [showIndex, setShowIndex] = useState(1);
+  const [showIndex, setShowIndex] = useState(null);
   const { resId } = useParams();
 
   const dummy = "Dummy data";
